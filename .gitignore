@@ -3,6 +3,10 @@
 *.ldb  
 *.sln  
 *.config  
+*.pdb
+*.exe
+*.exe.manifest
+*.ilk
   
   
 #¹ıÂËÎÄ¼ş¼ĞDebug,Release,obj  
