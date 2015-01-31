@@ -6,9 +6,14 @@
 *.pdb
 *.exe
 *.exe.manifest
+*.1.tlog
 *.ilk
-  
-  
+*.tlog
+*.obj
+*.log
+*.idb
+*.cache
+
 #¹ıÂËÎÄ¼ş¼ĞDebug,Release,obj  
 Debug/  
 Release/  
