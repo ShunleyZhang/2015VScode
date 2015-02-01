@@ -13,6 +13,8 @@
 *.log
 *.idb
 *.cache
+*.opensdf
+*.suo
 
 #¹ıÂËÎÄ¼ş¼ĞDebug,Release,obj  
 Debug/  
