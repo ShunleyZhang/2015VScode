@@ -24,12 +24,30 @@
     <ClCompile Include="Transform.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="MyBlending.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LaplacianBlending.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="example.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SurfMatch.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Transform.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LaplacianBlending.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MyBlending.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="example.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

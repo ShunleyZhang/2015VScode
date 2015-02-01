@@ -11,4 +11,4 @@
 using namespace std;
 using namespace cv;
 
-void featureMatch(cv::Mat img_object, cv::Mat img_scene, std::vector<Point2f> obj, std::vector<Point2f> sce, int minHessian = 500);
+void featureMatch(cv::Mat img_object, cv::Mat img_scene, std::vector<Point2f> &obj, std::vector<Point2f> &sce, int minHessian = 500);

@@ -24,6 +24,8 @@ struct newBound
 	double persX;
 	double persY;
 };
+
 Mat cylinderTrans(Mat img, double focusSet = -1);
 Mat getHomographyByOpenCV(vector<Point2f> obj, vector<Point2f> sce);
+Mat getHomographyBySelf(vector<Point2f> obj, vector<Point2f> sce);
 newBound getNewBound(cv::Mat H, int obj_col, int obj_row, int sce_col, int sce_row);

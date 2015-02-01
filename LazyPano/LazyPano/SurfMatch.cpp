@@ -5,7 +5,7 @@ using namespace cv;
 
 
 
-void featureMatch(cv::Mat img_object, cv::Mat img_scene, std::vector<Point2f> obj, std::vector<Point2f> sce, int minHessian)
+void featureMatch(cv::Mat img_object, cv::Mat img_scene, std::vector<Point2f> &obj, std::vector<Point2f> &sce, int minHessian)
 {
 	//-- Step 1: Detect the keypoints using SURF Detector
 	SurfFeatureDetector detector(minHessian);
@@ -36,8 +36,8 @@ void featureMatch(cv::Mat img_object, cv::Mat img_scene, std::vector<Point2f> ob
 		if (dist > max_dist) max_dist = dist;
 	}
 
-	printf("-- Max dist : %f \n", max_dist);
-	printf("-- Min dist : %f \n", min_dist);
+	//printf("-- Max dist : %f \n", max_dist);
+	//printf("-- Min dist : %f \n", min_dist);
 	
 	//-- Draw only "good" matches (i.e. whose distance is less than 3*min_dist )
 	std::vector< DMatch > good_matches;
@@ -55,16 +55,31 @@ void featureMatch(cv::Mat img_object, cv::Mat img_scene, std::vector<Point2f> ob
 		good_matches, img_matches, Scalar::all(-1), Scalar::all(-1),
 		vector<char>(), DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS);
 
-	imshow("Good Matches & Object detection", img_matches);
-
-	waitKey(0);
-
-	for (int i = 0; i < good_matches.size()-1; i++)
+	for (int i = 0; i < good_matches.size(); i++)
 	{
 		//-- Get the keypoints from the good matches
 		obj.push_back(keypoints_object[good_matches[i].queryIdx].pt);
 		sce.push_back(keypoints_scene[good_matches[i].trainIdx].pt);
 	}
+	//cout << obj.size() << " " << sce.size() << endl;
+	/*
+	Mat H = findHomography(obj, sce, CV_RANSAC);
+
+	//-- Get the corners from the image_1 ( the object to be "detected" )
+	std::vector<Point2f> obj_corners(4);
+	obj_corners[0] = cvPoint(0, 0); obj_corners[1] = cvPoint(img_object.cols, 0);
+	obj_corners[2] = cvPoint(img_object.cols, img_object.rows); obj_corners[3] = cvPoint(0, img_object.rows);
+	std::vector<Point2f> scene_corners(4);
+
+	perspectiveTransform(obj_corners, scene_corners, H);
+	//-- Draw lines between the corners (the mapped object in the scene - image_2 )
+	line(img_matches, scene_corners[0] + Point2f(img_object.cols, 0), scene_corners[1] + Point2f(img_object.cols, 0), Scalar(0, 255, 0), 4);
+	line(img_matches, scene_corners[1] + Point2f(img_object.cols, 0), scene_corners[2] + Point2f(img_object.cols, 0), Scalar(0, 255, 0), 4);
+	line(img_matches, scene_corners[2] + Point2f(img_object.cols, 0), scene_corners[3] + Point2f(img_object.cols, 0), Scalar(0, 255, 0), 4);
+	line(img_matches, scene_corners[3] + Point2f(img_object.cols, 0), scene_corners[0] + Point2f(img_object.cols, 0), Scalar(0, 255, 0), 4);
+	
+	//imshow("Good Matches & Object detection", img_matches);
+	//waitKey(0);*/
 }
 
 void surf(cv::Mat img_object, cv::Mat img_scene, cv::Mat dst)
@@ -102,8 +117,8 @@ void surf(cv::Mat img_object, cv::Mat img_scene, cv::Mat dst)
 		if (dist > max_dist) max_dist = dist;
 	}
 
-	printf("-- Max dist : %f \n", max_dist);
-	printf("-- Min dist : %f \n", min_dist);
+	//printf("-- Max dist : %f \n", max_dist);
+	//printf("-- Min dist : %f \n", min_dist);
 
 	//-- Draw only "good" matches (i.e. whose distance is less than 3*min_dist )
 	std::vector< DMatch > good_matches;
@@ -189,7 +204,7 @@ void surf(cv::Mat img_object, cv::Mat img_scene, cv::Mat dst)
 	line(img_matches, scene_corners[3] + Point2f(img_object.cols, 0), scene_corners[0] + Point2f(img_object.cols, 0), Scalar(0, 255, 0), 4);
 
 	//-- Show detected matches
-	imshow("Good Matches & Object detection", img_matches);
+//	imshow("Good Matches & Object detection", img_matches);
 
-	waitKey(0);
+//	waitKey(0);
 }

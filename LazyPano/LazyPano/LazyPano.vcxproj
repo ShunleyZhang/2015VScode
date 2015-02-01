@@ -140,11 +140,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="example.cpp" />
+    <ClCompile Include="LaplacianBlending.cpp" />
+    <ClCompile Include="MyBlending.cpp" />
     <ClCompile Include="SurfMatch.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="源.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="example.h" />
+    <ClInclude Include="MyBlending.h" />
+    <ClInclude Include="LaplacianBlending.h" />
     <ClInclude Include="SurfMatch.h" />
     <ClInclude Include="Transform.h" />
   </ItemGroup>
